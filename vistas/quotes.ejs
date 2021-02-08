@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Enviado</title>
+</head>
+<body>
+   
+    <h1>Acá están los quotes almacenados</h1>
+    <% for (let quote of quotes) { %>
+        <h2>Nombre: <%=quote.author%></h2>
+        <h2>Quote: <%=quote.text%></h2>
+        <% } %>
+    <a href="/">Volver atrás</a>
+
+</body>
+</html>
