@@ -11,22 +11,36 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container bg-success">
         <div class="row">
             <div class="col-6 offset-3">
+            <nav class="navbar navbar-light">
+                <div class="container-fluid">
+                    <p id="encabezado" class="text-white">Bienvenido a las citas de Coding Dojo</p>
+            </div>
+            </nav>
+                
                 <form action="/quotes" method="POST" id="form-personaje" class="mt-4">
                     <div class="mb-3">
-                      <h1>Welcome to Quoting Dojo</h1> 
-                      <div class="card mt-4" style="width: 18rem;">
-                        <div class="card-body">
+                      <h1 class="text-white">Welcome to Quoting Dojo</h1> 
+                      <div class="card mt-4 ml-4" style="width: 18rem;">
+                        <div class="card-body col-6">
                             <h5 class="card-title"></h5>
-                            <p class="card-text">Your Name: <input type="text" name="author">  </p>
-                            <p class="card-text">Your Quote:   <input type="text" name="text"> </p>
+                            <p class="card-text">Your Name: <input type="text" name="author" required>  </p>
+                            <p class="card-text">Your Quote:   <input type="text" name="text" required> </p>
                             <button type="submit" class="btn btn-primary">Add my quote!</button>
-                            <button type="submit" class="btn btn-secondary mt-4"><a href="/quotes">Skip to quotes!</a></button>
+                            <button type="submit" class="btn btn-danger secondary mt-4"><a href="/quotes" class="btn-danger">Skip to quotes!</a></button>
                         </div>
                     </div>
                 </form>
+
+                <h4>Lista de quotes agregados a la Base de Datos</h4>
+                <ul>
+                    <% for (quotesnew of quotes) { %>
+                        <li><%=quotesnew.author%></li>
+                        <li><%=quotesnew.text%></li>
+                    <% } %>
+                </ul>
                     
             
             </div>

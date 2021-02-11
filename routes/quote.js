@@ -1,4 +1,7 @@
 const { Router } = require('express');
+const { QuoteNew } = require('../db');
+
+
 const router = Router();
 
 const quotes = [
@@ -15,14 +18,15 @@ const quotes = [
         text: "Lo siento, pero no se me da"
     },
     {
-        author: "Profe Mati",
-        text: "No cambies el puerto, NO NUNCA EL FOR. Yo soy el demonio"
-    },
+        author: "Alexis Sánchez",
+        text: "Mi intindi"
+    }
 
 ];
 
-router.get("/", (req, res) => {
-    res.render("principal")
+router.get("/", async (req, res) => {
+    const quotesnew = await QuoteNew.findAll();
+    res.render("principal", {quotes: quotesnew})
 });
 
 
@@ -31,11 +35,17 @@ router.get('/quotes', function(req, res) {
 });
 
 
-router.post('/quotes', function (req,res) {
-    let info = req.body;
+router.post('/quotes', async (req,res) => {
+    const new_quotes = await QuoteNew.create({
+        author: req.body.author,
+        text: req.body.text
+    });
+    const quotesnew = await QuoteNew.findAll();
+
+    /*let info = req.body;
     quotes.push({author: info.author, text: info.text})
-    console.log(quotes);
-    res.render('quotes', {quotes : quotes});
+    console.log(quotes); */
+    res.render('quotes', {quotes : quotesnew});
 
 });
 
