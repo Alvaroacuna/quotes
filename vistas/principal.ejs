@@ -19,7 +19,7 @@
             $('.btnBorrar').on('click', function(){
                 let boton = $(this);
                 let idCita = boton.attr('cita');
-
+                
                 bootbox.confirm({
                     message: "¿Estás seguro que quieres eliminar la cita?",
                     buttons: {
@@ -80,13 +80,17 @@
                       <div class="card mt-4 ml-4" style="width: 18rem;">
                         <div class="card-body col-6">
                             <h5 class="card-title"></h5>
-                            <p class="card-text">Nombre: <input type="text" name="author" required>  </p>
-                            <p class="card-text">Cita:  <input type="text" name="text" required> </p>
+                            <p class="card-text">Nombre: <input type="text" name="author">  </p>
+                            <p class="card-text">Cita:  <input type="text" name="text"> </p>
                             <button type="submit" class="btn btn-primary">Agregar cita nueva!</button>
-                            <button type="submit" class="btn btn-danger secondary mt-4"><a href="/quotes" class="btn-danger">Ir a cuotas creadas!</a></button>
+                            <button type="button" class="btn btn-danger secondary mt-4"><a href="/quotes" class="btn-danger">Ir a cuotas creadas!</a></button>
                         </div>
                     </div>
                 </form>
+
+                <%if ( errores.length > 0 ) {%>
+                    <div class="alert alert-danger"><%= errores%></div>
+                  <%}%>
 
                 <h4>Lista de quotes agregados a la Base de Datos</h4>
 
@@ -103,7 +107,7 @@
                     <% for (quotesnew of quotes) { %>
                         <li><%=quotesnew.text%></li>
                         <li><%=quotesnew.author%></li> 
-                        <button class="btnBorrar" cita="<%=quotesnew.id %>">Borrar Cita</button> <a href="/editar/<%=quotesnew.id %>">Editar</a>
+                        <button type="button" class="btnBorrar" cita="<%=quotesnew.id %>">Borrar Cita</button> <a href="/editar/<%=quotesnew.id %>">Editar</a>
                         <% } %>
                 </ul>
                     
