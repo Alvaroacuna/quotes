@@ -1,8 +1,10 @@
 const express = require("express");
 const session = require('express-session');
+const flash = require('connect-flash');
 const app = express();
 const port = 8001;
 
+app.use(flash());
 app.use('/static', express.static("static"));
 
 // Esto establece la ubicación donde express buscará la vista ejs
